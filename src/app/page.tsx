@@ -1,4 +1,5 @@
-git add"use client";
+"use client";
+
 
 import { motion } from "framer-motion";
 import { Download, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
