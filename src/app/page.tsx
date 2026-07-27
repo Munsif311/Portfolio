@@ -75,7 +75,7 @@ export default function Home() {
             <a href="https://github.com/Munsif311" target="_blank" rel="noreferrer" className="p-2 hover:text-accentBlue transition-colors">
               <Github size={24} />
             </a>
-            <a href="https://linkedin.com/in/munsif-khan" target="_blank" rel="noreferrer" className="p-2 hover:text-accentBlue transition-colors">
+            <a href="https://www.linkedin.com/in/munsif-khan-418774257/" target="_blank" rel="noreferrer" className="p-2 hover:text-accentBlue transition-colors">
               <Linkedin size={24} />
             </a>
           </motion.div>
