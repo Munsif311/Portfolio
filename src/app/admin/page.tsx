@@ -43,6 +43,8 @@ type TextFieldProps = {
   multiline?: boolean;
 };
 
+type AuthView = "login" | "setup" | "pending" | "forgot" | "reset";
+
 function TextField({ label, value, onChange, multiline = false }: TextFieldProps) {
   const className =
     "mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white outline-none focus:border-accentBlue";
@@ -70,7 +72,13 @@ export default function AdminPage() {
   const [portfolio, setPortfolio] = useState<PortfolioData>(emptyPortfolio);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [loginForm, setLoginForm] = useState({ username: "", password: "" });
+  const [authView, setAuthView] = useState<AuthView>("login");
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+  const [setupForm, setSetupForm] = useState({ email: "", password: "", passwordConfirm: "" });
+  const [recoveryEmail, setRecoveryEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [authToken, setAuthToken] = useState("");
+  const [recoveryEnabled, setRecoveryEnabled] = useState(false);
   const [saving, setSaving] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [message, setMessage] = useState("");
@@ -104,6 +112,24 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const resetToken = params.get("reset");
+    if (resetToken) {
+      setAuthToken(resetToken);
+      setAuthView("reset");
+    }
+
+    void fetch("/api/admin/status", { cache: "no-store" })
+      .then(async (response) => {
+        const result = (await response.json()) as { state?: string; error?: string; recoveryEnabled?: boolean };
+        if (!response.ok) throw new Error(result.error ?? "Unable to check admin setup.");
+        setRecoveryEnabled(Boolean(result.recoveryEnabled));
+        if (!resetToken) setAuthView(result.state === "ready" ? "login" : "setup");
+      })
+      .catch((error: unknown) => {
+        setMessage(error instanceof Error ? error.message : "Unable to check admin setup.");
+        setMessageIsError(true);
+      });
     void reloadPortfolio();
   }, []);
 
@@ -132,6 +158,76 @@ export default function AdminPage() {
       setMessage("Signed in.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Login failed.");
+      setMessageIsError(true);
+    }
+  }
+
+  async function handleSetup(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setMessage("");
+    setMessageIsError(false);
+
+    if (setupForm.password !== setupForm.passwordConfirm) {
+      setMessage("Password and confirm password do not match.");
+      setMessageIsError(true);
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/admin/setup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(setupForm),
+      });
+      const result = (await response.json().catch(() => ({}))) as { error?: string };
+      if (!response.ok) throw new Error(result.error ?? "Unable to create the admin account.");
+      await reloadPortfolio();
+      setMessage("Admin account created. You are signed in.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Unable to create the admin account.");
+      setMessageIsError(true);
+    }
+  }
+
+  async function handleRecovery(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setMessage("");
+    setMessageIsError(false);
+
+    try {
+      const response = await fetch("/api/admin/recovery", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: recoveryEmail }),
+      });
+      const result = (await response.json().catch(() => ({}))) as { error?: string; message?: string };
+      if (!response.ok) throw new Error(result.error ?? "Unable to send the recovery email.");
+      setMessage(result.message ?? "Check your email for a password reset link.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Unable to send the recovery email.");
+      setMessageIsError(true);
+    }
+  }
+
+  async function handlePasswordReset(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setMessage("");
+    setMessageIsError(false);
+
+    try {
+      const response = await fetch("/api/admin/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: authToken, password: newPassword }),
+      });
+      const result = (await response.json().catch(() => ({}))) as { error?: string };
+      if (!response.ok) throw new Error(result.error ?? "Unable to reset your password.");
+      window.history.replaceState(null, "", "/admin");
+      setAuthView("login");
+      setNewPassword("");
+      setMessage("Password updated. Sign in with your new password.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Unable to reset your password.");
       setMessageIsError(true);
     }
   }
@@ -372,44 +468,150 @@ export default function AdminPage() {
   }
 
   if (!isAuthenticated) {
+    const inputClass =
+      "mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white outline-none focus:border-accentBlue";
+
     return (
       <main className="flex min-h-screen items-center justify-center bg-dark px-6 text-white">
-        <form
-          onSubmit={handleLogin}
-          className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl"
-        >
+        <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl">
           <p className="text-sm uppercase tracking-[0.2em] text-accentBlue">Admin access</p>
           <h1 className="mt-3 text-3xl font-bold">Portfolio dashboard</h1>
-          <div className="mt-6 space-y-4">
-            <TextField
-              label="Username"
-              value={loginForm.username}
-              onChange={(username) => setLoginForm({ ...loginForm, username })}
-            />
-            <label className="block text-sm text-gray-300">
-              Password
-              <input
-                type="password"
-                value={loginForm.password}
-                onChange={(event) =>
-                  setLoginForm({ ...loginForm, password: event.target.value })
-                }
-                className="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white outline-none focus:border-accentBlue"
-              />
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="mt-6 w-full rounded-xl bg-accentBlue px-4 py-3 font-bold text-dark hover:bg-accentPurple"
-          >
-            Sign in
-          </button>
+
+          {authView === "setup" ? (
+            <form onSubmit={handleSetup}>
+              <p className="mt-3 text-sm leading-relaxed text-gray-400">
+                Create the first admin account using your portfolio contact email. You&apos;ll be signed in immediately, and signup closes after account creation.
+              </p>
+              <div className="mt-6 space-y-4">
+                <label className="block text-sm text-gray-300">
+                  Email
+                  <input
+                    type="email"
+                    autoComplete="email"
+                    required
+                    value={setupForm.email}
+                    onChange={(event) => setSetupForm({ ...setupForm, email: event.target.value })}
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block text-sm text-gray-300">
+                  Password (at least 6 characters)
+                  <input
+                    type="password"
+                    autoComplete="new-password"
+                    minLength={6}
+                    required
+                    value={setupForm.password}
+                    onChange={(event) => setSetupForm({ ...setupForm, password: event.target.value })}
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block text-sm text-gray-300">
+                  Confirm password
+                  <input
+                    type="password"
+                    autoComplete="new-password"
+                    minLength={6}
+                    required
+                    value={setupForm.passwordConfirm}
+                    onChange={(event) => setSetupForm({ ...setupForm, passwordConfirm: event.target.value })}
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+              <button type="submit" className="mt-6 w-full rounded-xl bg-accentBlue px-4 py-3 font-bold text-dark hover:bg-accentPurple">
+                Create account and open dashboard
+              </button>
+            </form>
+          ) : null}
+
+          {authView === "login" ? (
+            <form onSubmit={handleLogin}>
+              <div className="mt-6 space-y-4">
+                <label className="block text-sm text-gray-300">
+                  Email
+                  <input
+                    type="email"
+                    autoComplete="username"
+                    required
+                    value={loginForm.email}
+                    onChange={(event) => setLoginForm({ ...loginForm, email: event.target.value })}
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block text-sm text-gray-300">
+                  Password
+                  <input
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    value={loginForm.password}
+                    onChange={(event) => setLoginForm({ ...loginForm, password: event.target.value })}
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+              <button type="submit" className="mt-6 w-full rounded-xl bg-accentBlue px-4 py-3 font-bold text-dark hover:bg-accentPurple">
+                Sign in
+              </button>
+              {recoveryEnabled ? (
+                <button type="button" onClick={() => { setRecoveryEmail(loginForm.email); setAuthView("forgot"); setMessage(""); }} className="mt-4 w-full text-sm text-accentBlue hover:text-accentPurple">
+                  Forgot password?
+                </button>
+              ) : null}
+            </form>
+          ) : null}
+
+          {authView === "forgot" ? (
+            <form onSubmit={handleRecovery}>
+              <p className="mt-3 text-sm text-gray-400">Enter your admin email and we&apos;ll send a password reset link.</p>
+              <label className="mt-6 block text-sm text-gray-300">
+                Email
+                <input
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={recoveryEmail}
+                  onChange={(event) => setRecoveryEmail(event.target.value)}
+                  className={inputClass}
+                />
+              </label>
+              <button type="submit" className="mt-6 w-full rounded-xl bg-accentBlue px-4 py-3 font-bold text-dark hover:bg-accentPurple">
+                Send reset link
+              </button>
+              <button type="button" onClick={() => { setAuthView("login"); setMessage(""); }} className="mt-4 w-full text-sm text-gray-400 hover:text-white">
+                Back to sign in
+              </button>
+            </form>
+          ) : null}
+
+          {authView === "reset" ? (
+            <form onSubmit={handlePasswordReset}>
+              <p className="mt-3 text-sm text-gray-400">Choose a new password. Reset links expire after 15 minutes.</p>
+              <label className="mt-6 block text-sm text-gray-300">
+                New password (at least 6 characters)
+                <input
+                  type="password"
+                  autoComplete="new-password"
+                  minLength={6}
+                  required
+                  value={newPassword}
+                  onChange={(event) => setNewPassword(event.target.value)}
+                  className={inputClass}
+                />
+              </label>
+              <button type="submit" className="mt-6 w-full rounded-xl bg-accentBlue px-4 py-3 font-bold text-dark hover:bg-accentPurple">
+                Update password
+              </button>
+            </form>
+          ) : null}
+
           {message ? (
             <p className={`mt-4 text-sm ${messageIsError ? "text-red-300" : "text-accentBlue"}`} role="status">
               {message}
             </p>
           ) : null}
-        </form>
+        </div>
       </main>
     );
   }

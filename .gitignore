@@ -4,3 +4,4 @@ out/
 .env
 .env.local
 public/uploads/
+.portfolio-admin-auth.json

@@ -1,23 +1,36 @@
 import { NextResponse } from "next/server";
-import { getAdminCredentials, isValidAdminCredentials, signSession } from "@/lib/auth";
+import { getAdminSetupState, isValidAdminCredentials, signSession } from "@/lib/auth";
 
 export async function POST(request: Request) {
   const payload = await request.json().catch(() => ({}));
-  const username = typeof payload.username === "string" ? payload.username : "";
+  const email = typeof payload.email === "string" ? payload.email : "";
   const password = typeof payload.password === "string" ? payload.password : "";
 
-  if (!getAdminCredentials()) {
+  try {
+    if ((await getAdminSetupState()) !== "ready") {
+      return NextResponse.json(
+        { error: "Complete the one-time admin setup before signing in." },
+        { status: 409 },
+      );
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Admin authentication is unavailable.";
     return NextResponse.json(
-      { error: "Admin auth is not configured. Set ADMIN_USERNAME and ADMIN_PASSWORD in your environment." },
-      { status: 500 },
+      { error: message },
+      { status: 503 },
     );
   }
 
-  if (!isValidAdminCredentials(username, password)) {
-    return NextResponse.json({ error: "Invalid username or password." }, { status: 401 });
+  try {
+    if (!(await isValidAdminCredentials(email, password))) {
+      return NextResponse.json({ error: "Invalid email or password." }, { status: 401 });
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Admin authentication is unavailable.";
+    return NextResponse.json({ error: message }, { status: 503 });
   }
 
-  const sessionToken = signSession(username);
+  const sessionToken = signSession(email.trim().toLowerCase());
   if (!sessionToken) {
     return NextResponse.json({ error: "Server session secret is not configured." }, { status: 500 });
   }
