@@ -1,0 +1,396 @@
+{
+  "profile": {
+    "name": "Munsif Khan",
+    "title": "AI & Machine Learning Engineer",
+    "tagline": "Software Engineering graduate specializing in machine learning, computer vision, NLP, recommendation systems, and AI-agent applications.",
+    "summary": "Software Engineering graduate (University of Malakand, July 2026) specializing in Machine Learning and Deep Learning. Experienced in building and deploying end-to-end AI solutions including computer vision, NLP, recommendation systems, and AI-agent applications delivered as interactive web apps. Proficient in Python, data analysis, and machine learning pipeline development.",
+    "email": "munsifkhankhaksar@gmail.com",
+    "github": "https://github.com/Munsif311",
+    "linkedin": "https://www.linkedin.com/in/munsif-khan-418774257/",
+    "location": "Pakistan",
+    "resumeUrl": "/Munsif_Ai_Engr_CV.pdf",
+    "image": "/Munsif.png"
+  },
+  "skills": [
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "Languages",
+      "description": "Core scripting and data science workflows.",
+      "featured": true
+    },
+    {
+      "id": "sql",
+      "name": "SQL",
+      "category": "Data",
+      "description": "Database querying and data analysis.",
+      "featured": true
+    },
+    {
+      "id": "tensorflow",
+      "name": "TensorFlow",
+      "category": "Machine Learning",
+      "description": "Deep learning model development.",
+      "featured": true
+    },
+    {
+      "id": "opencv",
+      "name": "OpenCV",
+      "category": "Computer Vision",
+      "description": "Image processing and vision pipelines.",
+      "featured": true
+    },
+    {
+      "id": "yolov8",
+      "name": "YOLOv8",
+      "category": "Computer Vision",
+      "description": "Real-time object detection systems.",
+      "featured": true
+    },
+    {
+      "id": "llms",
+      "name": "LLMs",
+      "category": "AI / LLM",
+      "description": "Prompt engineering and generative AI solutions.",
+      "featured": true
+    },
+    {
+      "id": "rag",
+      "name": "RAG",
+      "category": "AI / LLM",
+      "description": "Context-grounded AI retrieval systems.",
+      "featured": true
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "category": "Web",
+      "description": "Modern frontend and portfolio applications.",
+      "featured": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "green-vision",
+      "slug": "green-vision",
+      "title": "Green Vision",
+      "shortDescription": "AI-driven environmental and security monitoring for smart parks.",
+      "description": "Designed an end-to-end AI solution to monitor environmental and security conditions in smart parks using Python, TensorFlow, OpenCV, and YOLO models.",
+      "problem": "Urban parks need real-time monitoring of air quality, suspicious activity, and environmental changes without requiring dense manual oversight.",
+      "solution": "Implemented an AI-powered monitoring pipeline that identifies risk events, tracks environmental signals, and surfaces actionable insights through an interface.",
+      "category": "Computer Vision",
+      "tech": [
+        "Python",
+        "TensorFlow",
+        "YOLO",
+        "OpenCV"
+      ],
+      "image": "/green_vision.png",
+      "gallery": [
+        "/green_vision.png"
+      ],
+      "featured": true,
+      "published": true,
+      "demo": "https://example.com",
+      "github": "https://github.com/Munsif311",
+      "url": "/projects/green-vision"
+    },
+    {
+      "id": "sqlite-rag-ai-agent",
+      "slug": "sqlite-rag-ai-agent",
+      "title": "SQLite RAG AI Agent",
+      "shortDescription": "Natural-language querying over SQLite databases using LLMs and retrieval-augmented generation.",
+      "description": "Built a Retrieval-Augmented Generation system that allows natural language interaction with a SQLite database and generates contextual answers.",
+      "problem": "Users often lack SQL proficiency and need a simpler way to explore structured data.",
+      "solution": "Used an LLM pipeline with schema-aware retrieval and contextual prompts to convert user intent into database-aware responses.",
+      "category": "AI / LLM",
+      "tech": [
+        "LLMs",
+        "RAG",
+        "React",
+        "AI Agents"
+      ],
+      "image": "/sqlite_rag.png",
+      "gallery": [
+        "/sqlite_rag.png"
+      ],
+      "featured": true,
+      "published": true,
+      "demo": "https://example.com",
+      "github": "https://github.com/Munsif311",
+      "url": "/projects/sqlite-rag-ai-agent"
+    },
+    {
+      "id": "pneumonia-detection",
+      "slug": "pneumonia-detection",
+      "title": "Pneumonia Detection",
+      "shortDescription": "Medical AI system for chest X-ray analysis and pneumonia detection.",
+      "description": "A medical imaging model using YOLOv8 and OpenCV to detect pneumonia markers from chest X-ray images, covering the full pipeline from dataset preparation to evaluation.",
+      "problem": "Medical image review is time-intensive and error-prone without AI assistance.",
+      "solution": "Built a vision pipeline that preprocesses, detects, and evaluates pneumonia indicators in medical imagery.",
+      "category": "Medical AI",
+      "tech": [
+        "YOLOv8",
+        "Computer Vision",
+        "Medical AI",
+        "OpenCV"
+      ],
+      "image": "/pneumonia.png",
+      "gallery": [
+        "/pneumonia.png"
+      ],
+      "featured": true,
+      "published": true,
+      "demo": "https://example.com",
+      "github": "https://github.com/Munsif311",
+      "url": "/projects/pneumonia-detection"
+    }
+  ],
+  "experience": [
+    {
+      "id": "gao-tek",
+      "role": "Data Mining Intern",
+      "company": "GAO Tek Inc.",
+      "duration": "Jun 2026 – Sep 2026",
+      "description": "Remote data mining internship contributing to analysis, preprocessing, and pattern extraction tasks.",
+      "published": true
+    },
+    {
+      "id": "oasis",
+      "role": "Data Analytics Intern",
+      "company": "Oasis Infobyte",
+      "duration": "Jun 2026",
+      "description": "Completed a fellowship internship focused on orientation and hands-on application of data analytics concepts through guided projects.",
+      "published": true
+    },
+    {
+      "id": "ezitech",
+      "role": "Machine Learning Intern",
+      "company": "Ezitech Institute",
+      "duration": "Jun 2025 – Sep 2025",
+      "description": "Delivered multiple end-to-end machine learning projects, including prediction systems and a SQL RAG system.",
+      "published": true,
+      "supportLetterUrl": {
+        "url": "/uploads/pdf/01013488-ec2e-4086-a7a4-b5159f5e94ee-ezitech_internship_Certificate.pdf",
+        "downloadUrl": "/uploads/pdf/01013488-ec2e-4086-a7a4-b5159f5e94ee-ezitech_internship_Certificate.pdf",
+        "pathname": "uploads/pdf/01013488-ec2e-4086-a7a4-b5159f5e94ee-ezitech_internship_Certificate.pdf",
+        "filename": "ezitech internship Certificate.pdf",
+        "size": 3971799,
+        "contentType": "application/pdf"
+      },
+      "location": "islamabd",
+      "employmentType": "intern",
+      "website": ""
+    },
+    {
+      "id": "cognifyz",
+      "role": "Machine Learning Intern",
+      "company": "Cognifyz Technologies",
+      "duration": "Jan 2025 – Feb 2025",
+      "description": "Worked on data-driven tasks including feature engineering, model training, evaluation, and insight generation.",
+      "published": true,
+      "supportLetterUrl": {
+        "url": "/uploads/pdf/61597f41-b3d0-4c07-a389-2c7b0e7096e3-Munsif_khan_cogni.pdf",
+        "downloadUrl": "/uploads/pdf/61597f41-b3d0-4c07-a389-2c7b0e7096e3-Munsif_khan_cogni.pdf",
+        "pathname": "uploads/pdf/61597f41-b3d0-4c07-a389-2c7b0e7096e3-Munsif_khan_cogni.pdf",
+        "filename": "Munsif khan cogni.pdf",
+        "size": 400830,
+        "contentType": "application/pdf"
+      },
+      "employmentType": "intern",
+      "location": "Remote "
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1791983313888",
+      "title": "Machine learning ",
+      "issuer": "Ezitech institute ",
+      "issueDate": "2025",
+      "description": "Successfully completed Machine Learning training at Ezitech Institute, gaining practical knowledge of machine learning concepts, data preprocessing, exploratory data analysis, feature engineering, model training, evaluation, and predictive analytics. Developed hands-on experience with Python and popular machine learning libraries to build, evaluate, and improve models for real-world applications.",
+      "image": {
+        "url": "/uploads/image/50dddfc4-c385-46d9-9dac-890c95cf9fdd-ml2.PNG",
+        "downloadUrl": "/uploads/image/50dddfc4-c385-46d9-9dac-890c95cf9fdd-ml2.PNG",
+        "pathname": "uploads/image/50dddfc4-c385-46d9-9dac-890c95cf9fdd-ml2.PNG",
+        "filename": "ml2.PNG",
+        "size": 422405,
+        "contentType": "image/png"
+      },
+      "public": true,
+      "featured": false,
+      "skills": [],
+      "category": "Professional",
+      "pdfUrl": {
+        "url": "/uploads/pdf/1ae4d567-7fed-4e5c-ae43-86ce9f4ac8e6-ezitech_internship_Certificate.pdf",
+        "downloadUrl": "/uploads/pdf/1ae4d567-7fed-4e5c-ae43-86ce9f4ac8e6-ezitech_internship_Certificate.pdf",
+        "pathname": "uploads/pdf/1ae4d567-7fed-4e5c-ae43-86ce9f4ac8e6-ezitech_internship_Certificate.pdf",
+        "filename": "ezitech internship Certificate.pdf",
+        "size": 3971799,
+        "contentType": "application/pdf"
+      }
+    },
+    {
+      "id": "cert-1791982505665",
+      "title": "NFTP Technical ",
+      "issuer": "NFTP",
+      "issueDate": "2024",
+      "description": "Successfully completed Technical Domain Training under the National Freelance Training Program (NFTP), gaining practical knowledge of web development, technical skills, and industry-relevant tools. Developed an understanding of website development fundamentals, problem-solving, and applying technical concepts to real-world projects, strengthening my foundation for professional growth in the software development field.",
+      "image": {
+        "url": "/uploads/image/085f09e8-b3b2-4276-a3c8-c3d3f188781f-nftp.PNG",
+        "downloadUrl": "/uploads/image/085f09e8-b3b2-4276-a3c8-c3d3f188781f-nftp.PNG",
+        "pathname": "uploads/image/085f09e8-b3b2-4276-a3c8-c3d3f188781f-nftp.PNG",
+        "filename": "nftp.PNG",
+        "size": 505849,
+        "contentType": "image/png"
+      },
+      "public": true,
+      "featured": false,
+      "skills": [],
+      "category": "Professional",
+      "pdfUrl": {
+        "url": "/uploads/pdf/435231e9-6fdb-43f9-bf6b-4832969360c8-NPTP.pdf",
+        "downloadUrl": "/uploads/pdf/435231e9-6fdb-43f9-bf6b-4832969360c8-NPTP.pdf",
+        "pathname": "uploads/pdf/435231e9-6fdb-43f9-bf6b-4832969360c8-NPTP.pdf",
+        "filename": "NPTP.pdf",
+        "size": 540286,
+        "contentType": "application/pdf"
+      }
+    },
+    {
+      "id": "cert-1791982310113",
+      "title": "Smart IOT Technology ",
+      "issuer": "Navticc",
+      "issueDate": "2025",
+      "description": "Successfully completed the Smart Internet of Things (IoT) certification through NAVTTC (National Vocational and Technical Training Commission). Gained foundational knowledge of IoT architecture, smart sensors, microcontrollers, device connectivity, data acquisition, and real-time monitoring. Developed an understanding of integrating hardware and software to build smart, connected systems for automation and intelligent applications.",
+      "image": {
+        "url": "/uploads/image/b8179b56-049b-4410-b993-5d60a1ebb922-nav.PNG",
+        "downloadUrl": "/uploads/image/b8179b56-049b-4410-b993-5d60a1ebb922-nav.PNG",
+        "pathname": "uploads/image/b8179b56-049b-4410-b993-5d60a1ebb922-nav.PNG",
+        "filename": "nav.PNG",
+        "size": 545933,
+        "contentType": "image/png"
+      },
+      "public": true,
+      "featured": false,
+      "skills": [],
+      "category": "Professional",
+      "pdfUrl": {
+        "url": "/uploads/pdf/233df1c4-f8ee-4a3d-8381-51ce21e0a0bb-Navticc_.pdf",
+        "downloadUrl": "/uploads/pdf/233df1c4-f8ee-4a3d-8381-51ce21e0a0bb-Navticc_.pdf",
+        "pathname": "uploads/pdf/233df1c4-f8ee-4a3d-8381-51ce21e0a0bb-Navticc_.pdf",
+        "filename": "Navticc .pdf",
+        "size": 541564,
+        "contentType": "application/pdf"
+      }
+    },
+    {
+      "id": "ibm-datascience",
+      "title": "Python for Data Science, AI & Development",
+      "issuer": "IBM",
+      "issueDate": "2025",
+      "description": "Practitioner-level certificate in data science foundations and applied analytics.",
+      "public": true,
+      "verificationUrl": "https://www.coursera.org/account/accomplishments/certificate/BCHQ8H6V1WVP",
+      "pdfUrl": {
+        "url": "/uploads/pdf/47b21e07-f89f-43a7-a9e1-c4f6a83b8214-python_for_datascince.pdf",
+        "downloadUrl": "/uploads/pdf/47b21e07-f89f-43a7-a9e1-c4f6a83b8214-python_for_datascince.pdf",
+        "pathname": "uploads/pdf/47b21e07-f89f-43a7-a9e1-c4f6a83b8214-python_for_datascince.pdf",
+        "filename": "python for datascince.pdf",
+        "size": 307578,
+        "contentType": "application/pdf"
+      },
+      "category": "language ",
+      "image": {
+        "url": "/uploads/image/c75984d7-1de7-45a5-a480-bef5d428dc7f-python.PNG",
+        "downloadUrl": "/uploads/image/c75984d7-1de7-45a5-a480-bef5d428dc7f-python.PNG",
+        "pathname": "uploads/image/c75984d7-1de7-45a5-a480-bef5d428dc7f-python.PNG",
+        "filename": "python.PNG",
+        "size": 102099,
+        "contentType": "image/png"
+      }
+    },
+    {
+      "id": "cambridge",
+      "title": " Machine Learning ",
+      "issuer": "Cambridge , UniAthena",
+      "issueDate": "2024",
+      "description": "Successfully completed the Basics of Machine Learning Algorithms certification on 13 August 2025. The course was developed and delivered by UniAthena in partnership with Cambridge International Qualifications, UK. Gained foundational knowledge of machine learning concepts, supervised and unsupervised learning, common ML algorithms, model training, and data-driven prediction techniques.",
+      "public": true,
+      "pdfUrl": {
+        "url": "/uploads/pdf/6ca83b63-1187-4cda-a86f-9c5d091523dd-ml_certificate_uthana.pdf",
+        "downloadUrl": "/uploads/pdf/6ca83b63-1187-4cda-a86f-9c5d091523dd-ml_certificate_uthana.pdf",
+        "pathname": "uploads/pdf/6ca83b63-1187-4cda-a86f-9c5d091523dd-ml_certificate_uthana.pdf",
+        "filename": "ml certificate uthana.pdf",
+        "size": 1137547,
+        "contentType": "application/pdf"
+      },
+      "image": {
+        "url": "/uploads/image/dced88ee-937a-40ce-825d-bff7e9a71ab5-ml.PNG",
+        "downloadUrl": "/uploads/image/dced88ee-937a-40ce-825d-bff7e9a71ab5-ml.PNG",
+        "pathname": "uploads/image/dced88ee-937a-40ce-825d-bff7e9a71ab5-ml.PNG",
+        "filename": "ml.PNG",
+        "size": 229789,
+        "contentType": "image/png"
+      },
+      "category": "machine learning"
+    },
+    {
+      "id": "digiskills",
+      "title": " DATA ANALYTICS AND BUSINESS INTELLIGENCE",
+      "issuer": "DigiSkills.pk",
+      "issueDate": "2024",
+      "description": "Completed the Data Analytics and Business Intelligence certification through DigiSkills.pk, gaining practical knowledge of data collection, cleaning, analysis, visualization, and business reporting. Developed skills in interpreting data, identifying trends, generating actionable insights, and supporting data-driven decision-making using analytical tools and techniques.",
+      "public": true,
+      "verificationUrl": "https://lms.digiskills.pk/MyResults/MyResults.aspx",
+      "category": "data analysis",
+      "image": {
+        "url": "/uploads/image/3ac731f0-964f-422a-9a9d-89763fe593e1-Capture.PNG",
+        "downloadUrl": "/uploads/image/3ac731f0-964f-422a-9a9d-89763fe593e1-Capture.PNG",
+        "pathname": "uploads/image/3ac731f0-964f-422a-9a9d-89763fe593e1-Capture.PNG",
+        "filename": "Capture.PNG",
+        "size": 210827,
+        "contentType": "image/png"
+      },
+      "pdfUrl": {
+        "url": "/uploads/pdf/b9efd78f-b636-448d-8570-8bf82b729083-dataanalytics.pdf",
+        "downloadUrl": "/uploads/pdf/b9efd78f-b636-448d-8570-8bf82b729083-dataanalytics.pdf",
+        "pathname": "uploads/pdf/b9efd78f-b636-448d-8570-8bf82b729083-dataanalytics.pdf",
+        "filename": "dataanalytics.pdf",
+        "size": 409932,
+        "contentType": "application/pdf"
+      }
+    }
+  ],
+  "education": [
+    {
+      "id": "malakand",
+      "degree": "BSc Software Engineering",
+      "school": "University of Malakand",
+      "period": "2022 – 2026",
+      "details": "Graduated with a focus on software engineering and applied AI systems."
+    }
+  ],
+  "documents": [
+    {
+      "id": "cv",
+      "title": "AI Engineer CV",
+      "issuer": "Munsif Khan",
+      "category": "Resume",
+      "public": true,
+      "url": "/Munsif_Ai_Engr_CV.pdf",
+      "date": "2026",
+      "description": "Updated resume for AI and machine learning engineering opportunities."
+    }
+  ],
+  "blogPosts": [
+    {
+      "id": "ai-portfolio-architecture",
+      "title": "Designing AI Portfolio Systems",
+      "excerpt": "A practical look at building intelligent, user-friendly portfolio experiences with real-world data flows.",
+      "slug": "ai-portfolio-architecture",
+      "published": true,
+      "date": "2026-07-01"
+    }
+  ],
+  "achievements": []
+}
